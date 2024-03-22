@@ -14,10 +14,10 @@ document.querySelector('#search').addEventListener('submit',async (event)=>{
 
     const results = await fetch(apiUrl);
     const json = await results.json();
-
-    if(json.code === 200){
+    console.log(json)
+    if(json.cod === 200){
         showInfo({
-            city: json.cityName,
+            city: json.name,
             country: json.sys.country,
             temp: json.main.temp,
             tempMax: json.main.temp_max,
@@ -41,13 +41,13 @@ function showInfo(json){
     document.querySelector('#weather').classList.add('show');
 
     document.querySelector('#title').innerHTML = `${json.city}, ${json.country}`
-    document.querySelector('#temp_value').innerHTML = `${json.temp.toFixed(1).toString().replace('.', ',')} <sup>C°</sup>`
-    document.querySelector('#temp_max').innerHTML = `${json.tempMax.toFixed(0)} <sup>C°</sup>`
-    document.querySelector('#temp_min').innerHTML = `${json.tempMin.toFixed(0)} <sup>C°</sup>`
+    document.querySelector('#temp_value').innerHTML = `${json.temp.toFixed(0)} <sup>°C</sup>`
+    document.querySelector('#temp_max').innerHTML = `${json.tempMax.toFixed(0)} <sup>°C</sup>`
+    document.querySelector('#temp_min').innerHTML = `${json.tempMin.toFixed(0)} <sup>°C</sup>`
     document.querySelector('#temp_description').innerHTML = `${json.description}`
     document.querySelector('#temp_img').setAttribute('src', `https://openweathermap.org/img/wn/${json.tempIcon}@2x.png`)
     document.querySelector('#humidity').innerHTML = `${json.humidity}%`
-    document.querySelector('#wind').innerHTML = `${json.windSpeed.toFixed(1)}km/h`
+    document.querySelector('#wind').innerHTML = `${json.windSpeed.toFixed(1)} km/h`
 
 
 }
