@@ -14,7 +14,7 @@ document.querySelector('#search').addEventListener('submit',async (event)=>{
 
     const results = await fetch(apiUrl);
     const json = await results.json();
-    console.log(json)
+
     if(json.cod === 200){
         showInfo({
             city: json.name,
